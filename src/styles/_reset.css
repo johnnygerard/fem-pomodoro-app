@@ -1,0 +1,71 @@
+/* Based on Josh's Custom CSS Reset
+   https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+html {
+  /* Set rem unit to 1px at 16px font-size */
+  font-size: 6.25%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+
+  /* Reset to 16px */
+  font-size: 16rem;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  display: block;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
