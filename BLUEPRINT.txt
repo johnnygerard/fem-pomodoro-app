@@ -1,0 +1,43 @@
+components:
+  root
+  SVG templates
+  timer
+  timerSelector (radio group)
+  settings dialog
+
+services:
+  timer:
+    initial time values (accessors)
+    timer type (observable)
+
+enum:
+  timer type:
+    pomodoro
+    short break
+    long break
+
+logo
+radio group:
+  values: pomodoro, short break, long break
+  handler: stop timer and reset time value
+timer:
+  resolution: 1 second
+  table: state, button label
+    running, pause
+    stopped, start
+    final, restart
+settings button:
+  handler: open dialog
+
+settings dialog:
+number inputs:
+  labels: pomodoro, short break, long break
+  max value: 60
+  min value: 1
+  step: 1
+fonts radio group:
+  handler: select font
+colors radio group:
+  handler: select color theme
+apply button: close dialog, save and apply settings
+close button: close dialog
