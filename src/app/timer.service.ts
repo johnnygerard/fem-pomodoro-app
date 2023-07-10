@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { TimerType } from './timer-type.enum';
 
-const POMODORO_TIME = 25;
-const SHORT_BREAK_TIME = 5;
-const LONG_BREAK_TIME = 15;
+export const POMODORO_TIME = 25;
+export const SHORT_BREAK_TIME = 5;
+export const LONG_BREAK_TIME = 15;
 
 const POMODORO_KEY = 'pomodoroTime';
 const SHORT_BREAK_KEY = 'shortBreakTime';
