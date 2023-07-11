@@ -5,4 +5,30 @@
 body {
   display: grid;
   background: #1E213F;
+
+  // default color theme
+  &[color-theme='coral-pink'] {
+    --accent-color: #F87070;
+  }
+
+  &[color-theme='turquoise'] {
+    --accent-color: #70F3F8;
+  }
+
+  &[color-theme='lavender'] {
+    --accent-color: #D881F8;
+  }
+
+  // default font theme
+  &[font-theme='sans-serif'] {
+    --font-family: 'Kumbh Sans', sans-serif;
+  }
+
+  &[font-theme='serif'] {
+    --font-family: 'Roboto Slab', serif;
+  }
+
+  &[font-theme='monospace'] {
+    --font-family: 'Space Mono', monospace;
+  }
 }
