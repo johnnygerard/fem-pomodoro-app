@@ -1,0 +1,4 @@
+<label *ngFor="let timerType of timerTypes" [class.checked]="selectedTimerType === timerType">
+  {{ timerType }}
+  <input type="radio" name="timer" [value]="timerType" [(ngModel)]="selectedTimerType">
+</label>

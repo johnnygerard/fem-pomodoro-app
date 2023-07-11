@@ -1,0 +1,39 @@
+$label-height: 48px;
+
+:host {
+  $padding: 8px;
+  
+  display: flex;
+  border-radius: calc(($label-height + 2 * $padding) / 2);
+  background: #161932;
+  padding: $padding;
+}
+
+label {
+  // Typography
+  color: #D7E0FF;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 700;
+  opacity: 0.4;
+
+  cursor: pointer;
+  width: 120px;
+  height: $label-height;
+  border-radius: calc($label-height / 2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:is(:hover, :focus-visible, .checked) {
+    opacity: 1;
+  }
+
+  &.checked {
+    background: var(--accent-color);
+  }
+}
+
+input[type="radio"] {
+  display: none;
+}
