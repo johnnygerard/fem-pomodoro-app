@@ -26,6 +26,27 @@ export class TimerService {
     this._longBreakTime = this.getInitialValue(LONG_BREAK_KEY, LONG_BREAK_TIME);
   }
 
+  /**
+   * Return the initial time in milliseconds for the current timer type.
+   */
+  get initialTime(): number {
+    let time: number;
+
+    switch (this.timerType$.value) {
+      case TimerType.POMODORO:
+        time = this.pomodoroTime;
+        break;
+      case TimerType.SHORT_BREAK:
+        time = this.shortBreakTime;
+        break;
+      case TimerType.LONG_BREAK:
+        time = this.longBreakTime;
+        break;
+    }
+
+    return time * 6e4;
+  }
+
   get pomodoroTime(): number {
     return this._pomodoroTime;
   }
