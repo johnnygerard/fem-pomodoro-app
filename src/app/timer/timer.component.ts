@@ -35,7 +35,7 @@ export class TimerComponent implements OnInit {
   }
 
   private get remainingSeconds(): number {
-    return Math.floor(this.remainingTime / 1e3);
+    return Math.ceil(this.remainingTime / 1e3);
   }
 
   private leftPad(value: number): string {
@@ -56,7 +56,7 @@ export class TimerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.renderProgressBar(1);
+    this.renderProgressBar();
   }
 
   protected onClick(): void {
@@ -89,6 +89,7 @@ export class TimerComponent implements OnInit {
 
       this.stopTimer();
       this.buttonLabel = TimerState.FINISHED;
+      this.renderProgressBar();
     }, STEP);
   }
 
@@ -102,7 +103,7 @@ export class TimerComponent implements OnInit {
     this.startTimer();
   }
 
-  private renderProgressBar(percentage: number): void {
+  private renderProgressBar(percentage: number = 1): void {
     const PROGRESS_BAR_WIDTH = 12;
     const PROGRESS_BAR_DIAMETER = 340;
     const PROGRESS_BAR_RADIUS = PROGRESS_BAR_DIAMETER / 2;
