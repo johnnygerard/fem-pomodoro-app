@@ -1,0 +1,11 @@
+<div class="outer-ring">
+  <div class="inner-circle">
+    <div class="progress-bar">
+      <svg width="340" height="340" viewBox="0 0 340 340" fill="none">
+        <path #path fill="#F87070" transform="translate(170, 170)" />
+      </svg>
+      <span class="time">{{ minutes + ':' + seconds }}</span>
+      <button type="button" (click)="onClick()">{{ buttonLabel }}</button>
+    </div>
+  </div>
+</div>
