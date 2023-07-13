@@ -15,6 +15,10 @@ import { CommonModule } from '@angular/common';
       :host {
         display: block;
       }
+
+      path:hover {
+        stroke-opacity: 1;
+      }
     `
   ]
 })

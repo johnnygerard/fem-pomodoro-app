@@ -1,0 +1,48 @@
+<dialog open>
+  <form method="dialog" #form="ngForm">
+    <h1>Settings</h1>
+    <button (click)="closeDialog()" class="cross">
+      <app-cross-svg />
+    </button>
+    <hr class="main-separator">
+    <section>
+      <h2>Time (minutes)</h2>
+      <div class="number-group">
+        <label *ngFor="let timerSetting of timerSettings; let i = index">
+          {{ timerSetting.label }}
+          <input type="number" name="{{ i }}" min="1" max="600" step="1"
+              [(ngModel)]="timerSetting.timeSpan" #input>
+          <button type="button" class="up-arrow" (click)="stepUp(input)">
+            <app-up-arrow-svg />
+          </button>
+          <button type="button" class="down-arrow" (click)="stepDown(input)">
+            <app-down-arrow-svg />
+          </button>
+        </label>
+      </div>
+    </section>
+    <hr class="separator">
+    <section>
+      <h2>Font</h2>
+      <div class="fonts">
+        <label class="font" *ngFor="let font of [0,1,2]" [class.checked]="fontTheme === font">
+          Aa
+          <input type="radio" name="font" [value]="font" [(ngModel)]="fontTheme">
+        </label>
+      </div>
+    </section>
+    <hr class="separator">
+    <section>
+      <h2>Color</h2>
+      <div class="colors">
+        <label class="color" *ngFor="let color of [0,1,2]" [class.checked]="colorTheme === color">
+          <input type="radio" name="color" [value]="color" [(ngModel)]="colorTheme">
+          <app-checkmark-svg *ngIf="colorTheme === color" />
+        </label>
+      </div>
+    </section>
+    <button class="apply" (click)="applySettings()" [disabled]="form.invalid">
+      <span class="white-layer">Apply</span>
+    </button>
+  </form>
+</dialog>

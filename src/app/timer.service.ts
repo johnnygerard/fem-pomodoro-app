@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { TimerType } from './timer-type.enum';
+import { Key } from './key.enum';
 
 export const POMODORO_TIME = 25;
 export const SHORT_BREAK_TIME = 5;
 export const LONG_BREAK_TIME = 15;
-
-const POMODORO_KEY = 'pomodoroTime';
-const SHORT_BREAK_KEY = 'shortBreakTime';
-const LONG_BREAK_KEY = 'longBreakTime';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +18,14 @@ export class TimerService {
   private _longBreakTime: number;
 
   constructor() {
-    this._pomodoroTime = this.getInitialValue(POMODORO_KEY, POMODORO_TIME);
-    this._shortBreakTime = this.getInitialValue(SHORT_BREAK_KEY, SHORT_BREAK_TIME);
-    this._longBreakTime = this.getInitialValue(LONG_BREAK_KEY, LONG_BREAK_TIME);
+    const getInitialValue = (key: string, defaultValue: number): number => {
+      const storedValue = localStorage.getItem(key);
+      return storedValue ? +storedValue : defaultValue;
+    };
+
+    this._pomodoroTime = getInitialValue(Key.POMODORO, POMODORO_TIME);
+    this._shortBreakTime = getInitialValue(Key.SHORT_BREAK, SHORT_BREAK_TIME);
+    this._longBreakTime = getInitialValue(Key.LONG_BREAK, LONG_BREAK_TIME);
   }
 
   /**
@@ -53,7 +55,7 @@ export class TimerService {
 
   set pomodoroTime(time: number) {
     this._pomodoroTime = time;
-    localStorage.setItem(POMODORO_KEY, time.toString());
+    localStorage.setItem(Key.POMODORO, time.toString());
   }
 
   get shortBreakTime(): number {
@@ -62,7 +64,7 @@ export class TimerService {
 
   set shortBreakTime(time: number) {
     this._shortBreakTime = time;
-    localStorage.setItem(SHORT_BREAK_KEY, time.toString());
+    localStorage.setItem(Key.SHORT_BREAK, time.toString());
   }
 
   get longBreakTime(): number {
@@ -71,11 +73,6 @@ export class TimerService {
 
   set longBreakTime(time: number) {
     this._longBreakTime = time;
-    localStorage.setItem(LONG_BREAK_KEY, time.toString());
-  }
-
-  private getInitialValue(key: string, defaultValue: number): number {
-    const storedValue = localStorage.getItem(key);
-    return storedValue ? +storedValue : defaultValue;
+    localStorage.setItem(Key.LONG_BREAK, time.toString());
   }
 }
