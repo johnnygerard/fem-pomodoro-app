@@ -1,34 +1,20 @@
 @use 'reset';
 @use 'fonts';
 @use 'index' as *;
+@use 'sass:list';
 
 body {
   display: grid;
   background: #1E213F;
+  font-family: var(--font-family);
 
-  // default color theme
-  &[color-theme='coral-pink'] {
-    --accent-color: #F87070;
-  }
+  @for $i from 0 through 2 {
+    &[color-theme='#{$i}'] {
+      --accent-color: #{nth($colors, $i + 1)};
+    }
 
-  &[color-theme='turquoise'] {
-    --accent-color: #70F3F8;
-  }
-
-  &[color-theme='lavender'] {
-    --accent-color: #D881F8;
-  }
-
-  // default font theme
-  &[font-theme='sans-serif'] {
-    --font-family: 'Kumbh Sans', sans-serif;
-  }
-
-  &[font-theme='serif'] {
-    --font-family: 'Roboto Slab', serif;
-  }
-
-  &[font-theme='monospace'] {
-    --font-family: 'Space Mono', monospace;
+    &[font-theme='#{$i}'] {
+      --font-family: #{nth($fonts, $i + 1)};
+    }
   }
 }

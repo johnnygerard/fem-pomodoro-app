@@ -1,0 +1,217 @@
+@use 'index' as *;
+@use 'sass:color';
+
+:host {
+  display: block;
+}
+
+input {
+  appearance: none;
+}
+
+dialog {
+  all: unset;
+}
+
+form {
+  position: relative;
+  border-radius: 25px;
+  background: #FFF;
+  padding: 34px 40px 60px;
+  width: 540px;
+}
+
+// SHARED SECTION **************************************************
+h2 {
+  // Typography
+  color: #161932;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+hr {
+  &.separator {
+    margin: 24px 0;
+    background: change-color(#161932, $alpha: 0.1);
+  }
+
+  &.main-separator {
+    position: absolute;
+    top: 93px;
+    left: 0;
+    background: #E3E1E1;
+  }
+}
+
+section {
+  display: flex;
+
+  &:first-of-type {
+    margin-top: 60px;
+    flex-direction: column;
+  }
+
+  &:not(:first-of-type) {
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+// HEADER SECTION **************************************************
+app-cross-svg {
+  position: absolute;
+  top: 47px;
+  right: 38px;
+}
+
+h1 {
+  color: #161932;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+// NUMBER SECTION **************************************************
+.number-group {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+
+  label {
+    width: min-content;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    // Typography
+    color: change-color($color: #1E213F, $alpha: 0.4);
+    font-size: 12px;
+    font-weight: 700;
+  }
+}
+
+input[type="number"] {
+  all: unset;
+  cursor: text;
+  width: 140px;
+  height: 48px;
+  border-radius: 10px;
+  background: #EFF1FA;
+
+  box-sizing: border-box;
+  padding-left: 16px;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+
+  // Typography
+  color: #1E213F;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.up-arrow,
+.down-arrow {
+  position: absolute;
+  right: 16px;
+}
+
+.up-arrow {
+  bottom: 28px;
+}
+
+.down-arrow {
+  bottom: 15px;
+}
+
+// FONT AND COLOR SECTION **************************************************
+.fonts,
+.colors {
+  display: flex;
+  gap: 16px;
+}
+
+.font,
+.color {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  // Center content
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover:not(.checked) {
+    outline: 1px solid #EFF1FA;
+    outline-offset: 5px;
+  }
+}
+
+// FONT SECTION **************************************************
+.font {
+  background: #EFF1FA;
+
+  @for $i from 1 through length($fonts) {
+    &:nth-of-type(#{$i}) {
+      font-family: nth($fonts, $i);
+    }
+  }
+
+  &.checked {
+    background: #161932;
+    color: #FFF;
+  }
+}
+
+// COLOR SECTION **************************************************
+.color {
+  @for $i from 1 through length($colors) {
+    &:nth-of-type(#{$i}) {
+      background: nth($colors, $i);
+    }
+  }
+}
+
+// MISCELLANEOUS **************************************************
+button.apply {
+  $height: 52px;
+  $border-radius: calc($height / 2);
+
+  // Typography
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 700;
+
+  background: var(--accent-color);
+  width: 140px;
+  height: $height;
+  border-radius: $border-radius;
+
+  // Positioning
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(50%);
+
+  .white-layer {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: $border-radius;
+
+    &:hover {
+      background: change-color(#FFF, $alpha: 0.2);
+    }
+
+    // Center content
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -1,0 +1,70 @@
+<dialog open>
+  <form method="dialog" #f="ngForm">
+    <h1>Settings</h1>
+    <button (click)="closeDialog()">
+      <app-cross-svg />
+    </button>
+    <hr class="main-separator">
+    <section>
+      <h2>Time (minutes)</h2>
+      <div class="number-group">
+        <label>
+          pomodoro
+          <input type="number" name="pomodoro" min="1" max="600" step="1"
+              [(ngModel)]="pomodoroTimeSpan" #pomodoroInput>
+          <button type="button" class="up-arrow" (click)="stepUp(pomodoroInput)">
+            <app-up-arrow-svg />
+          </button>
+          <button type="button" class="down-arrow" (click)="stepDown(pomodoroInput)">
+            <app-down-arrow-svg />
+          </button>
+        </label>
+        <label>
+          short break
+          <input type="number" name="shortBreak" min="1" max="600" step="1"
+              [(ngModel)]="shortBreakTimeSpan" #shortBreakInput>
+          <button type="button" class="up-arrow" (click)="stepUp(shortBreakInput)">
+            <app-up-arrow-svg />
+          </button>
+          <button type="button" class="down-arrow" (click)="stepDown(shortBreakInput)">
+            <app-down-arrow-svg />
+          </button>
+        </label>
+        <label>
+          long break
+          <input type="number" name="longBreak" min="1" max="600" step="1"
+              [(ngModel)]="longBreakTimeSpan" #longBreakInput>
+          <button type="button" class="up-arrow" (click)="stepUp(longBreakInput)">
+            <app-up-arrow-svg />
+          </button>
+          <button type="button" class="down-arrow" (click)="stepDown(longBreakInput)">
+            <app-down-arrow-svg />
+          </button>
+        </label>
+      </div>
+    </section>
+    <hr class="separator">
+    <section>
+      <h2>Font</h2>
+      <div class="fonts">
+        <label class="font" *ngFor="let font of [0,1,2]" [class.checked]="fontTheme === font">
+          Aa
+          <input type="radio" name="font" [value]="font" [(ngModel)]="fontTheme">
+        </label>
+      </div>
+    </section>
+    <hr class="separator">
+    <section>
+      <h2>Color</h2>
+      <div class="colors">
+        <label class="color" *ngFor="let color of [0,1,2]" [class.checked]="colorTheme === color">
+          <input type="radio" name="color" [value]="color" [(ngModel)]="colorTheme">
+          <app-checkmark-svg *ngIf="colorTheme === color" />
+        </label>
+      </div>
+    </section>
+    <button class="apply" (click)="applySettings()" [disabled]="f.invalid">
+      <span class="white-layer">Apply</span>
+    </button>
+  </form>
+</dialog>
