@@ -14,8 +14,8 @@ import { TimerType } from '../timer-type.enum';
 const body = window.document.body;
 
 type TimerSettings = {
-  timeSpan: number,
   label: string,
+  timeSpan: number,
 }
 
 @Component({
@@ -35,9 +35,7 @@ type TimerSettings = {
 export class SettingsComponent {
   protected colorTheme: Color;
   protected fontTheme: Font;
-  protected pomodoroTimeSpan: number;
-  protected shortBreakTimeSpan: number;
-  protected longBreakTimeSpan: number;
+  protected timerSettings: TimerSettings[];
 
   @Output() closeDialogEvent = new EventEmitter<void>();
 
@@ -55,9 +53,20 @@ export class SettingsComponent {
     this.fontTheme = +fontTheme;
 
     // Initialize timer settings
-    this.pomodoroTimeSpan = this.timerService.pomodoroTime;
-    this.shortBreakTimeSpan = this.timerService.shortBreakTime;
-    this.longBreakTimeSpan = this.timerService.longBreakTime;
+    this.timerSettings = [
+      {
+        label: TimerType.POMODORO,
+        timeSpan: this.timerService.pomodoroTime,
+      },
+      {
+        label: TimerType.SHORT_BREAK,
+        timeSpan: this.timerService.shortBreakTime,
+      },
+      {
+        label: TimerType.LONG_BREAK,
+        timeSpan: this.timerService.longBreakTime,
+      },
+    ];
   }
 
   protected closeDialog(): void {
@@ -82,9 +91,21 @@ export class SettingsComponent {
   protected applySettings(): void {
     this.renderer.setAttribute(body, Key.COLOR, this.colorTheme.toString());
     this.renderer.setAttribute(body, Key.FONT, this.fontTheme.toString());
-    this.timerService.pomodoroTime = this.pomodoroTimeSpan;
-    this.timerService.shortBreakTime = this.shortBreakTimeSpan;
-    this.timerService.longBreakTime = this.longBreakTimeSpan;
+    
+    for (const { label, timeSpan } of this.timerSettings) {
+      switch (label) {
+        case TimerType.POMODORO:
+          this.timerService.pomodoroTime = timeSpan;
+          break;
+        case TimerType.SHORT_BREAK:
+          this.timerService.shortBreakTime = timeSpan;
+          break;
+        case TimerType.LONG_BREAK:
+          this.timerService.longBreakTime = timeSpan;
+          break;
+      }
+    }
+
     this.closeDialog();
   }
 }

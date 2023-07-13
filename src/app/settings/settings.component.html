@@ -1,5 +1,5 @@
 <dialog open>
-  <form method="dialog" #f="ngForm">
+  <form method="dialog" #form="ngForm">
     <h1>Settings</h1>
     <button (click)="closeDialog()">
       <app-cross-svg />
@@ -8,36 +8,14 @@
     <section>
       <h2>Time (minutes)</h2>
       <div class="number-group">
-        <label>
-          pomodoro
-          <input type="number" name="pomodoro" min="1" max="600" step="1"
-              [(ngModel)]="pomodoroTimeSpan" #pomodoroInput>
-          <button type="button" class="up-arrow" (click)="stepUp(pomodoroInput)">
+        <label *ngFor="let timerSetting of timerSettings; let i = index">
+          {{ timerSetting.label }}
+          <input type="number" name="{{ i }}" min="1" max="600" step="1"
+              [(ngModel)]="timerSetting.timeSpan" #input>
+          <button type="button" class="up-arrow" (click)="stepUp(input)">
             <app-up-arrow-svg />
           </button>
-          <button type="button" class="down-arrow" (click)="stepDown(pomodoroInput)">
-            <app-down-arrow-svg />
-          </button>
-        </label>
-        <label>
-          short break
-          <input type="number" name="shortBreak" min="1" max="600" step="1"
-              [(ngModel)]="shortBreakTimeSpan" #shortBreakInput>
-          <button type="button" class="up-arrow" (click)="stepUp(shortBreakInput)">
-            <app-up-arrow-svg />
-          </button>
-          <button type="button" class="down-arrow" (click)="stepDown(shortBreakInput)">
-            <app-down-arrow-svg />
-          </button>
-        </label>
-        <label>
-          long break
-          <input type="number" name="longBreak" min="1" max="600" step="1"
-              [(ngModel)]="longBreakTimeSpan" #longBreakInput>
-          <button type="button" class="up-arrow" (click)="stepUp(longBreakInput)">
-            <app-up-arrow-svg />
-          </button>
-          <button type="button" class="down-arrow" (click)="stepDown(longBreakInput)">
+          <button type="button" class="down-arrow" (click)="stepDown(input)">
             <app-down-arrow-svg />
           </button>
         </label>
@@ -63,7 +41,7 @@
         </label>
       </div>
     </section>
-    <button class="apply" (click)="applySettings()" [disabled]="f.invalid">
+    <button class="apply" (click)="applySettings()" [disabled]="form.invalid">
       <span class="white-layer">Apply</span>
     </button>
   </form>
