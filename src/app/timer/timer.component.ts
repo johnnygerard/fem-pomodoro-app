@@ -48,14 +48,14 @@ export class TimerComponent implements OnInit {
   constructor(
     private readonly renderer: Renderer2,
     private readonly timerService: TimerService
-  ) {
-    timerService.timerType$.subscribe(_ => {
-      this.stopTimer();
-      this.resetTimer();
-    });
-  }
+  ) { }
 
   ngOnInit(): void {
+    this.timerService.timerType$.subscribe(_ => {
+      this.stopTimer();
+      this.resetTimer();
+      this.renderProgressBar();
+    });
     this.renderProgressBar();
   }
 
@@ -79,7 +79,7 @@ export class TimerComponent implements OnInit {
 
   private startTimer(): void {
     const STEP = 20;
-    
+
     this.buttonLabel = TimerState.RUNNING;
     this.timerId = window.setInterval(() => {
       this.remainingTime -= STEP;
