@@ -91,6 +91,9 @@ export class SettingsComponent {
   protected applySettings(): void {
     this.renderer.setAttribute(body, Key.COLOR, this.colorTheme.toString());
     this.renderer.setAttribute(body, Key.FONT, this.fontTheme.toString());
+
+    window.localStorage.setItem(Key.COLOR, this.colorTheme.toString());
+    window.localStorage.setItem(Key.FONT, this.fontTheme.toString());
     
     for (const { label, timeSpan } of this.timerSettings) {
       switch (label) {
