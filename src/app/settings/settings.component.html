@@ -8,17 +8,19 @@
     <section>
       <h2>Time (minutes)</h2>
       <div class="number-group">
-        <label *ngFor="let timerSetting of timerSettings; let i = index">
-          {{ timerSetting.label }}
-          <input type="number" name="{{ i }}" min="1" max="600" step="1"
-              [(ngModel)]="timerSetting.timeSpan" #input>
+        <div class="number-unit" *ngFor="let timerSetting of timerSettings; let i = index">
+          <label>
+            {{ timerSetting.label }}
+            <input type="number" name="{{ i }}" min="1" max="600" step="1"
+                [(ngModel)]="timerSetting.timeSpan" #input>
+          </label>
           <button type="button" class="up-arrow" (click)="stepUp(input)">
             <app-up-arrow-svg />
           </button>
           <button type="button" class="down-arrow" (click)="stepDown(input)">
             <app-down-arrow-svg />
           </button>
-        </label>
+        </div>
       </div>
     </section>
     <hr class="separator">
