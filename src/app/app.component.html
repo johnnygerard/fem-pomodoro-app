@@ -1,7 +1,7 @@
 <h1>pomodoro</h1>
 <app-timer-selector />
 <app-timer />
-<button type="button" class="settings-button" (click)="settingsOpen = true">
+<button type="button" class="settings-button" (click)="settingsOpen = true" aria-label="Settings">
   <app-gear-svg />
 </button>
 <ng-container *ngIf="settingsOpen">
