@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { TimerType } from './timer-type.enum';
 import { Key } from './key.enum';
 
@@ -12,6 +12,9 @@ export const LONG_BREAK_TIME = 15;
 })
 export class TimerService {
   timerType$ = new BehaviorSubject<TimerType>(TimerType.POMODORO);
+
+  // Notify the timer component when the timer settings have changed.
+  timerSettings$ = new Subject<TimerType>();
 
   private _pomodoroTime: number;
   private _shortBreakTime: number;

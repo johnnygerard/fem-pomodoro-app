@@ -94,17 +94,26 @@ export class SettingsComponent {
 
     window.localStorage.setItem(Key.COLOR, this.colorTheme.toString());
     window.localStorage.setItem(Key.FONT, this.fontTheme.toString());
-    
+
     for (const { label, timeSpan } of this.timerSettings) {
       switch (label) {
         case TimerType.POMODORO:
-          this.timerService.pomodoroTime = timeSpan;
+          if (timeSpan !== this.timerService.pomodoroTime) {
+            this.timerService.pomodoroTime = timeSpan;
+            this.timerService.timerSettings$.next(TimerType.POMODORO);
+          }
           break;
         case TimerType.SHORT_BREAK:
-          this.timerService.shortBreakTime = timeSpan;
+          if (timeSpan !== this.timerService.shortBreakTime) {
+            this.timerService.shortBreakTime = timeSpan;
+            this.timerService.timerSettings$.next(TimerType.SHORT_BREAK);
+          }
           break;
         case TimerType.LONG_BREAK:
-          this.timerService.longBreakTime = timeSpan;
+          if (timeSpan !== this.timerService.longBreakTime) {
+            this.timerService.longBreakTime = timeSpan;
+            this.timerService.timerSettings$.next(TimerType.LONG_BREAK);
+          }
           break;
       }
     }

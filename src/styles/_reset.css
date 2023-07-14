@@ -18,7 +18,6 @@ html {
 
 body {
   -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
 
   /* Reset to 16px */
   font-size: 16rem;
