@@ -8,11 +8,11 @@ body {
   font-family: var(--font-family);
 
   @for $i from 0 through 2 {
-    &[color-theme='#{$i}'] {
+    &[data-color-theme='#{$i}'] {
       --accent-color: #{nth($colors, $i + 1)};
     }
 
-    &[font-theme='#{$i}'] {
+    &[data-font-theme='#{$i}'] {
       --font-family: #{nth($fonts, $i + 1)};
     }
   }
