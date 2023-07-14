@@ -51,11 +51,11 @@ export class TimerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.timerService.timerType$.subscribe(_ => {
-      this.stopTimer();
-      this.resetTimer();
-      this.renderProgressBar();
+    this.timerService.timerSettings$.subscribe(timerType => {
+      if (this.timerService.timerType$.value === timerType) this.resetTimer();
     });
+
+    this.timerService.timerType$.subscribe(_ => this.resetTimer());
     this.renderProgressBar();
   }
 
@@ -74,7 +74,9 @@ export class TimerComponent implements OnInit {
   }
 
   private resetTimer(): void {
-    this.remainingTime = this.timerService.initialTime;
+      this.stopTimer();
+      this.remainingTime = this.timerService.initialTime;
+      this.renderProgressBar();
   }
 
   private startTimer(): void {

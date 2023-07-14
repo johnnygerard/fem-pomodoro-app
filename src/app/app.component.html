@@ -1,1 +1,10 @@
-<app-settings />
+<h1>pomodoro</h1>
+<app-timer-selector />
+<app-timer />
+<button type="button" class="settings-button" (click)="settingsOpen = true">
+  <app-gear-svg />
+</button>
+<ng-container *ngIf="settingsOpen">
+  <div class="dialog-backdrop"></div>
+  <app-settings (closeDialogEvent)="settingsOpen = false" />
+</ng-container>
