@@ -1,7 +1,7 @@
 # Frontend Mentor | Pomodoro app
 This is my solution to the [Pomodoro app challenge](https://www.frontendmentor.io/challenges/pomodoro-app-KBFnycJ6G) from [Frontend Mentor](https://www.frontendmentor.io/).
 
-[![project status](https://img.shields.io/badge/status-work%20in%20progress-red?style=for-the-badge)](https://fem-pomodoro-app-jgerard.vercel.app)
+[![project status](https://img.shields.io/badge/status-solution%20published-success?style=for-the-badge)](https://www.frontendmentor.io/solutions/pomodoro-app-DnTMLCNZFz)
 
 ## Tech Stack
  - Angular
@@ -13,15 +13,15 @@ This is my solution to the [Pomodoro app challenge](https://www.frontendmentor.i
 
 ## Links
  - [Website](https://fem-pomodoro-app-jgerard.vercel.app) hosted with [Vercel](https://vercel.com/)
- <!-- - [Solution]() -->
+ - [Solution](https://www.frontendmentor.io/solutions/pomodoro-app-DnTMLCNZFz)
 
-<!-- ## Screenshots
+## Screenshots
 ### Desktop
 ![desktop screenshot](screenshots/desktop.webp)
 ### Tablet
 ![tablet screenshot](screenshots/tablet.webp)
 ### Mobile
-![mobile screenshot](screenshots/mobile.webp) -->
+![mobile screenshot](screenshots/mobile.webp)
 
 ## About Frontend Mentor
 [Frontend Mentor](https://www.frontendmentor.io/) challenges help you improve your coding skills by building realistic projects.
